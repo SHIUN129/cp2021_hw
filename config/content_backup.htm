@@ -149,6 +149,7 @@ doc["w13_2"].bind('click', w13_2.do)
 </script>
 </p>
 <h1>HW1</h1>
+<p><a href="https://gist.githubusercontent.com/SHIUN129/4520577d026bac5f49858434826fb967/raw/994f4a36f1bd00839cbed058af239b0db92b39ec/hw.txt">無按鈕</a></p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
 import browser.timer
@@ -177,6 +178,88 @@ def game():
     ctx.fillRect(px, py, width, height)
     
 browser.timer.set_interval(game, 10)</pre>
+<p><a href="https://gist.githubusercontent.com/SHIUN129/0813967b6782205f8f9d0c467e87ea7a/raw/302cd0e22ab5ca1e6a6deb1dfa5b219c7e06eeb9/hw.txt">有按鈕</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">rom browser import html
+from browser import document as doc
+from browser import timer
+
+canvas = html.CANVAS(width = 400, height = 100)
+canvas.id = "game-board3"
+brython_div = doc["brython_div3"]
+brython_div &lt;= canvas
+brython_div &lt;= html.BUTTON("啟動", id="power")
+ctx = canvas.getContext("2d")
+
+
+px = 0
+py = 50
+width = 20
+height = 20
+speedx = 2
+speedy = 2
+
+
+def game():
+    global px, py, width, height, speedx, speedy
+    ctx.clearRect(px, py, width, height)
+    ctx.fillStyle = "red"
+    px += speedx
+    if px &gt; 200 :
+        speedx = 0
+        py += speedy
+    if py &lt; 0 or (py + height) &gt; canvas.height :
+        speedy = -speedy
+    ctx.fillRect(px, py, width, height)
+
+game()
+QQbe = None
+
+def pig(ev):
+    global QQbe
+    if QQbe is None:
+       QQbe = timer.set_interval(game, 10)
+       doc['power'].text = '暫停'
+    elif QQbe == 'hold':
+        QQbe = timer.set_interval(game, 10)
+        doc['power'].text = '暫停'
+    else: 
+        timer.clear_interval(QQbe)
+        QQbe = 'hold'
+        doc['power'].text = '繼續'
+
+doc["power"].bind("click", pig)</pre>
+<p><a href="https://gist.githubusercontent.com/SHIUN129/e4c3b71b78cae98597cebbd3c447f4d0/raw/9e72af7681cb843604d4bf62d333a8eb945ffb71/hw.txt">英文打字</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">Creating gists
+You can create two kinds of gists: public and secret. Create a public gist if you're ready to share your ideas with the world or a secret gist if you're not.
+
+About gists
+Every gist is a Git repository, which means that it can be forked and cloned. If you are signed in to GitHub when you create a gist, the gist will be associated with your account and you will see it in your list of gists when you navigate to your gist home page.
+
+Gists can be public or secret. Public gists show up in Discover, where people can browse new gists as they're created. They're also searchable, so you can use them if you'd like other people to find and see your work.
+
+Secret gists don't show up in Discover and are not searchable. Secret gists aren't private. If you send the URL of a secret gist to a friend, they'll be able to see it. However, if someone you don't know discovers the URL, they'll also be able to see your gist. If you need to keep your code away from prying eyes, you may want to create a private repository instead.
+
+After creating a gist, you cannot convert it from public to secret.
+
+You'll receive a notification when:
+
+You are the author of a gist.
+Someone mentions you in a gist.
+You subscribe to a gist, by clicking Subscribe at the top of any gist.
+You can pin gists to your profile so other people can see them easily. For more information, see "Pinning items to your profile."
+
+You can discover public gists others have created by going to the gist home page and clicking All Gists. This will take you to a page of all gists sorted and displayed by time of creation or update. You can also search gists by language with Gist Search. Gist search uses the same search syntax as code search.
+
+Since gists are Git repositories, you can view their full commit history, complete with diffs. You can also fork or clone gists. For more information, see "Forking and cloning gists".
+
+You can download a ZIP file of a gist by clicking the Download ZIP button at the top of the gist. You can embed a gist in any text field that supports Javascript, such as a blog post. To get the embed code, click the clipboard icon next to the Embed URL of a gist. To embed a specific gist file, append the Embed URL with ?file=FILENAME.
+
+Gist supports mapping GeoJSON files. These maps are displayed in embedded gists, so you can easily share and embed maps. For more information, see "Working with non-code files."</pre>
+<p><a href="https://gist.githubusercontent.com/SHIUN129/626f483e3f2736329e30d58746a00806/raw/e8e76cdfd87f105901195db179f74de165d16771/hw.txt">中文打字</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">Gist 是 Github 的一個子服務，且任何人都可以使用這個服務，不論你是否擁有 Github 帳號。
+以開發者的角度來說，最基本的功能就是可以分享片段的原始碼。有別於 Github 的 Repository，Gist 可以只分享專案中的某一個小檔案中的程式碼，且擁有私人的選項，讓別人不會搜尋到你的 Gist。
+在 Github 的 Repository 設定 Private 是要付費的，但在 Gist 是不需要的。除此之外 Gist 還有許多用處，包括可以直接執行我們就來一一介紹吧！</pre>
+<p></p>
 <!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
 <p>
 <script src="https://mde.tw/cp2021/cmsimde/static/Cango-24v03-min.js"></script>
